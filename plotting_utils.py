@@ -38,10 +38,19 @@ class PlotGenerator:
         try:
             fig = go.Figure()
             
+            # Handle different column name formats from yfinance
+            if 'Adj Close' in stock_data.columns:
+                price_col = stock_data['Adj Close']
+            elif 'Close' in stock_data.columns:
+                price_col = stock_data['Close']
+            else:
+                # Find the last column if standard names don't exist
+                price_col = stock_data.iloc[:, -1]
+            
             # Add price line
             fig.add_trace(go.Scatter(
                 x=stock_data.index,
-                y=stock_data['Adj Close'],
+                y=price_col,
                 mode='lines',
                 name=f'{ticker} Price',
                 line=dict(color='#1f77b4', width=2)

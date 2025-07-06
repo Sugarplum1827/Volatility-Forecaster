@@ -163,13 +163,21 @@ def main():
                 # Basic statistics
                 col1, col2 = st.columns(2)
                 
+                # Handle different column name formats from yfinance
+                if 'Adj Close' in stock_data.columns:
+                    price_col = stock_data['Adj Close']
+                elif 'Close' in stock_data.columns:
+                    price_col = stock_data['Close']
+                else:
+                    price_col = stock_data.iloc[:, -1]
+                
                 with col1:
-                    st.metric("Start Price", f"${stock_data['Adj Close'].iloc[0]:.2f}")
-                    st.metric("Min Price", f"${stock_data['Adj Close'].min():.2f}")
+                    st.metric("Start Price", f"${price_col.iloc[0]:.2f}")
+                    st.metric("Min Price", f"${price_col.min():.2f}")
                     
                 with col2:
-                    st.metric("End Price", f"${stock_data['Adj Close'].iloc[-1]:.2f}")
-                    st.metric("Max Price", f"${stock_data['Adj Close'].max():.2f}")
+                    st.metric("End Price", f"${price_col.iloc[-1]:.2f}")
+                    st.metric("Max Price", f"${price_col.max():.2f}")
                 
                 # Data summary
                 st.subheader("Data Summary")

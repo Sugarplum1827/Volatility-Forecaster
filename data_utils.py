@@ -72,8 +72,16 @@ class DataProcessor:
         pd.DataFrame : DataFrame with returns
         """
         try:
+            # Handle different column name formats from yfinance
+            if 'Adj Close' in price_data.columns:
+                prices = price_data['Adj Close']
+            elif 'Close' in price_data.columns:
+                prices = price_data['Close']
+            else:
+                # Find the last column if standard names don't exist
+                prices = price_data.iloc[:, -1]
+            
             # Calculate log returns
-            prices = price_data['Adj Close']
             log_returns = np.log(prices / prices.shift(1))
             
             # Remove first NaN value
