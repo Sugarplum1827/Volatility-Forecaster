@@ -52,6 +52,13 @@ class DataProcessor:
             # Remove any rows with NaN values
             data = data.dropna()
             
+            # Ensure we have the right column names (yfinance sometimes returns different formats)
+            if 'Adj Close' not in data.columns and 'Close' in data.columns:
+                data['Adj Close'] = data['Close']
+            elif len(data.columns) > 0 and 'Adj Close' not in data.columns and 'Close' not in data.columns:
+                # If neither exists, use the last column and rename it
+                data['Adj Close'] = data.iloc[:, -1]
+            
             return data
             
         except Exception as e:
@@ -81,6 +88,9 @@ class DataProcessor:
                 # Find the last column if standard names don't exist
                 prices = price_data.iloc[:, -1]
             
+            # Ensure prices is a pandas Series
+            prices = pd.Series(prices)
+            
             # Calculate log returns
             log_returns = np.log(prices / prices.shift(1))
             
@@ -90,11 +100,14 @@ class DataProcessor:
             # Simple returns for comparison
             simple_returns = prices.pct_change().dropna()
             
+            # Align indices
+            common_index = log_returns.index.intersection(simple_returns.index)
+            
             # Create returns DataFrame
             returns_df = pd.DataFrame({
-                'log_returns': log_returns,
-                'simple_returns': simple_returns[1:],  # Align with log returns
-                'price': prices[1:]  # Align with returns
+                'log_returns': log_returns[common_index],
+                'simple_returns': simple_returns[common_index],
+                'price': prices[common_index]
             })
             
             return returns_df
