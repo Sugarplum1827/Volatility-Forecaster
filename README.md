@@ -39,17 +39,12 @@ pip install -r requirements.txt
 
 ### Running the Application
 
-1. **Navigate to the python_app directory**:
-   ```bash
-   cd python_app
-   ```
-
-2. **Run the Streamlit app**:
+1. **Run the Streamlit app**:
    ```bash
    streamlit run app.py --server.port 5000
    ```
 
-3. **Access the application**:
+2. **Access the application**:
    - Open your web browser
    - Navigate to `http://localhost:5000`
 
@@ -168,7 +163,7 @@ Where:
 
 ### Project Structure
 ```
-python_app/
+Volatility-Forcaster/
 ├── app.py                 # Main Streamlit application
 ├── data_utils.py         # Data processing utilities
 ├── garch_models.py       # GARCH modeling functions
