@@ -1,6 +1,44 @@
-# Financial Volatility Forecasting with GARCH Models - R Shiny App
+# Financial Volatility Forecasting with GARCH Models
 
-A comprehensive R Shiny application for analyzing and forecasting financial volatility using GARCH models. This app provides an interactive interface for loading stock data, fitting GARCH models, generating forecasts, and performing diagnostic tests.
+This project provides two complete implementations for financial volatility forecasting using GARCH models: a Python Streamlit application and an R Shiny application. Both applications offer interactive interfaces for loading stock data, fitting GARCH models, generating forecasts, and performing diagnostic tests.
+
+## Project Structure
+
+```
+├── python_app/          # Python Streamlit Implementation
+│   ├── app.py
+│   ├── data_utils.py
+│   ├── garch_models.py
+│   ├── plotting_utils.py
+│   ├── requirements.txt
+│   ├── .streamlit/
+│   └── README.md
+├── r_app/               # R Shiny Implementation  
+│   ├── app.R
+│   ├── install_packages.R
+│   ├── example_usage.R
+│   ├── run_app.R
+│   ├── DEPLOYMENT_GUIDE.md
+│   └── README.md
+└── README.md           # This file
+```
+
+## Quick Start
+
+### Python Implementation (Currently Running)
+```bash
+cd python_app
+pip install -r requirements.txt
+streamlit run app.py --server.port 5000
+```
+
+### R Implementation
+```bash
+cd r_app
+# In R console:
+source("install_packages.R")
+source("run_app.R")
+```
 
 ## Features
 

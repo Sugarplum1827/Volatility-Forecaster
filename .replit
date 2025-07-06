@@ -22,7 +22,7 @@ args = "install_dependencies"
 
 [[workflows.workflow.tasks]]
 task = "workflow.run"
-args = "Streamlit App"
+args = "Python Streamlit App"
 
 [[workflows.workflow]]
 name = "install_dependencies"
@@ -33,12 +33,12 @@ task = "shell.exec"
 args = "uv add yfinance arch plotly scipy matplotlib statsmodels"
 
 [[workflows.workflow]]
-name = "Streamlit App"
+name = "Python Streamlit App"
 author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "streamlit run app.py --server.port 5000"
+args = "cd python_app && streamlit run app.py --server.port 5000"
 waitForPort = 5000
 
 [[ports]]

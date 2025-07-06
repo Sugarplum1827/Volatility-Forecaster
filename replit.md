@@ -129,11 +129,12 @@ pip install streamlit yfinance arch pandas numpy plotly scipy matplotlib
 
 ## Recent Changes
 
-- **R Shiny Implementation**: Created complete R Shiny application (`app.R`) with professional dashboard interface
-- **Package Management**: Added automated R package installation script
-- **Example Scripts**: Developed standalone R example demonstrating core functionality
-- **Deployment Guide**: Created comprehensive deployment documentation for multiple platforms
-- **Documentation**: Updated project documentation to reflect dual implementation
+- **Project Organization**: Separated Python and R implementations into dedicated folders (`python_app/` and `r_app/`)
+- **Python App**: Fixed column name issues and organized Streamlit application in `python_app/` folder
+- **R Shiny Implementation**: Created complete R Shiny application with professional dashboard interface
+- **Documentation**: Created separate README files for each implementation with detailed instructions
+- **Package Management**: Added requirements.txt for Python and automated R package installation
+- **Deployment**: Comprehensive deployment guides for both implementations
 
 ## User Preferences
 
